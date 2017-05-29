@@ -80,11 +80,6 @@ fi
 %systemd_preun zookeeper.service
 
 %postun
-# When the last version of a package is erased, $1 is 0
-# Otherwise it's an upgrade and we need to restart the service
-if [ $1 -ge 1 ]; then
-    /usr/bin/systemctl restart zookeeper.service
-fi
 /usr/bin/systemctl daemon-reload >/dev/null 2>&1 || :
 
 %files
